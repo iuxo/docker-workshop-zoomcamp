@@ -1285,6 +1285,7 @@ name = "pipeline"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "ipykernel" },
     { name = "jupyter-contrib-nbextensions" },
     { name = "pandas" },
     { name = "psycopg2-binary" },
@@ -1301,6 +1302,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "jupyter-contrib-nbextensions", specifier = ">=0.7.0" },
     { name = "pandas", specifier = ">=3.0.1" },
     { name = "psycopg2-binary", specifier = ">=2.9.11" },
