@@ -3,3 +3,7 @@
 .python-version
 
 .venv/
+
+keys/
+
+.terraform*
