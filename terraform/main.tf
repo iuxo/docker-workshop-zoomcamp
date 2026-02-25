@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "7.20.0"
     }
   }
@@ -9,18 +9,18 @@ terraform {
 
 provider "google" {
   # credentials = "./keys/my-creds.json"
-  project     = "trusty-lock-488123-u7"
-  region      = "us-central1"
+  project = var.project
+  region  = var.region
 }
 
 resource "google_storage_bucket" "auto-expire" {
-  name          = "trusty-lock-488123-u7-terra-bucket"
-  location      = "US"
+  name          = var.gcs_bucket_name
+  location      = var.location
   force_destroy = true
 
   lifecycle_rule {
     condition {
-      age = 3
+      age = 1
     }
     action {
       type = "Delete"
@@ -35,4 +35,9 @@ resource "google_storage_bucket" "auto-expire" {
       type = "AbortIncompleteMultipartUpload"
     }
   }
+}
+
+resource "google_bigquery_dataset" "demo_dataset" {
+  dataset_id = var.bq_dataset_name
+  location   = var.location
 }
